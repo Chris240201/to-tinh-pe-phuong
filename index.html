@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tỏ Tình Pé Phương iuuu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Pacifico', cursive;
+      background: #ffe6f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .screen {
+      display: none;
+      text-align: center;
+    }
+    .active {
+      display: block;
+    }
+    h1 {
+      color: #ff66a3;
+      font-size: 2.5rem;
+    }
+    button {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background-color: #ffb3d9;
+      color: white;
+      cursor: pointer;
+      position: relative;
+    }
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: url('https://i.pinimg.com/originals/3c/67/92/3c6792d47bba6bb3e317a248e4d13d0e.gif') center/cover no-repeat;
+      z-index: -1;
+      animation: fall 20s linear infinite;
+    }
+    @keyframes fall {
+      0% { background-position: center top; }
+      100% { background-position: center bottom; }
+    }
+    input {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.2rem;
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid pink;
+    }
+    .moving {
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+    #love-img {
+      width: 200px;
+      margin: 20px auto;
+    }
+    iframe {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts"></div>
+
+  <!-- Nhạc nền YouTube -->
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/62TrmUvQGjo?autoplay=1&loop=1&playlist=62TrmUvQGjo" frameborder="0" allow="autoplay"></iframe>
+
+  <div class="screen active" id="screen1">
+    <h1>Pé Phương iuuu ơi</h1>
+    <img id="love-img" src="image1.jpg" alt="Ảnh đáng yêu">
+    <p>Cậu có iu tớ honggg?</p>
+    <button onclick="nextScreen('screen2')">Đương nhin rùi ❤️</button>
+    <button id="noBtn" onmouseover="moveNoButton()" class="moving">Không 😡</button>
+  </div>
+
+  <div class="screen" id="screen2">
+    <h1>Cậu iu gì ở mình?</h1>
+    <input type="text" id="reason" oninput="gradualReason()" placeholder="Gõ gì cũng thành lý do này 😘"/>
+    <p><button onclick="nextScreen('screen3')">Gửi</button></p>
+  </div>
+
+  <div class="screen" id="screen3">
+    <h1>Hẹn cậu mai chúng ta tâm tình nhaaaaa 💖</h1>
+    <img src="image2.jpg" alt="Ảnh yêu thương" style="max-width: 80%; border-radius: 20px;">
+  </div>
+
+  <script>
+    function nextScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    const fullReason = 'Vì cậu ngon lắmmmmm ý :P';
+    let reasonProgress = 0;
+
+    function gradualReason() {
+      const input = document.getElementById('reason');
+      reasonProgress = Math.min(reasonProgress + 1, fullReason.length);
+      input.value = fullReason.slice(0, reasonProgress);
+    }
+
+    function moveNoButton() {
+      const btn = document.getElementById('noBtn');
+      const x = Math.random() * (window.innerWidth - 150);
+      const y = Math.random() * (window.innerHeight - 100);
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+    }
+  </script>
+</body>
+</html>
